@@ -1,0 +1,102 @@
+version: '3.9'
+
+services:
+  # 1. Postiz 애플리케이션
+  postiz:
+    image: ghcr.io/gitroomhq/postiz-app:latest
+    container_name: postiz-app
+    restart: always
+    ports:
+      - "4200:5000"
+    environment:
+      - MAIN_URL=http://localhost:4200
+      - FRONTEND_URL=http://localhost:4200
+      - NEXT_PUBLIC_BACKEND_URL=http://localhost:4200/api
+      - JWT_SECRET=secure_random_secret_jupocket_123
+      - DATABASE_URL=postgresql://postiz_user:postiz_password@postiz-postgres:5432/postiz_db
+      - REDIS_URL=redis://postiz-redis:6379
+      - TEMPORAL_ADDRESS=temporal:7233
+      - IS_GENERAL=true
+      - DISABLE_REGISTRATION=false
+      - STORAGE_PROVIDER=local
+      - BACKEND_INTERNAL_URL=http://127.0.0.1:3000
+    depends_on:
+      - postiz-postgres
+      - postiz-redis
+      - temporal
+    networks:
+      - postiz-network
+
+  # 2. 데이터베이스
+  postiz-postgres:
+    image: postgres:15-alpine
+    container_name: postiz-postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postiz_user
+      - POSTGRES_PASSWORD=postiz_password
+      - POSTGRES_DB=postiz_db
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postiz_user -d postiz_db" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - postiz-network
+
+  # 3. Redis
+  postiz-redis:
+    image: redis:7-alpine
+    container_name: postiz-redis
+    restart: always
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - postiz-network
+
+  # 4. Temporal Full Stack (Elasticsearch 포함)
+  temporal-elasticsearch:
+    container_name: temporal-elasticsearch
+    image: elasticsearch:7.17.27
+    environment:
+      - cluster.routing.allocation.disk.threshold_enabled=true
+      - cluster.routing.allocation.disk.watermark.low=512mb
+      - cluster.routing.allocation.disk.watermark.high=256mb
+      - cluster.routing.allocation.disk.watermark.flood_stage=128mb
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms256m -Xmx256m
+      - xpack.security.enabled=false
+    networks:
+      - postiz-network
+
+  temporal:
+    container_name: temporal
+    image: temporalio/auto-setup:1.24
+    depends_on:
+      - postiz-postgres
+      - temporal-elasticsearch
+    environment:
+      - DB=postgres12
+      - DB_PORT=5432
+      - POSTGRES_USER=postiz_user
+      - POSTGRES_PWD=postiz_password
+      - POSTGRES_SEEDS=postiz-postgres
+      - ENABLE_ES=true
+      - ES_SEEDS=temporal-elasticsearch
+      - ES_VERSION=v7
+    networks:
+      - postiz-network
+
+volumes:
+  postgres_data:
+
+
+networks:
+  postiz-network:
+    name: postiz-network
+    driver: bridge
