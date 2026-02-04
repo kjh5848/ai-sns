@@ -1,0 +1,12 @@
+# Docker volumes
+mixpost/storage/
+mixpost/db_data/
+mixpost/redis_data/
+postiz-selfhosted/postgres_data/
+postiz-selfhosted/redis_data/
+
+# OS files
+.DS_Store
+
+# Sensitive environment files if any exist separately
+.env
