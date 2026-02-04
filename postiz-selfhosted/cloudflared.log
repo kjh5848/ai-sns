@@ -1,0 +1,28 @@
+{"level":"info","time":"2026-02-04T07:57:10Z","message":"Thank you for trying Cloudflare Tunnel. Doing so, without a Cloudflare account, is a quick way to experiment and try it out. However, be aware that these account-less Tunnels have no uptime guarantee, are subject to the Cloudflare Online Services Terms of Use (https://www.cloudflare.com/website-terms/), and Cloudflare reserves the right to investigate your use of Tunnels for violations of such terms. If you intend to use Tunnels in production you should use a pre-created named tunnel by following: https://developers.cloudflare.com/cloudflare-one/connections/connect-apps"}
+{"level":"info","time":"2026-02-04T07:57:10Z","message":"Requesting new quick Tunnel on trycloudflare.com..."}
+{"level":"info","time":"2026-02-04T07:57:15Z","message":"+--------------------------------------------------------------------------------------------+"}
+{"level":"info","time":"2026-02-04T07:57:15Z","message":"|  Your quick Tunnel has been created! Visit it at (it may take some time to be reachable):  |"}
+{"level":"info","time":"2026-02-04T07:57:15Z","message":"|  https://hayes-tonight-barbie-holdings.trycloudflare.com                                   |"}
+{"level":"info","time":"2026-02-04T07:57:15Z","message":"+--------------------------------------------------------------------------------------------+"}
+{"level":"info","time":"2026-02-04T07:57:15Z","message":"Cannot determine default configuration path. No file [config.yml config.yaml] in [~/.cloudflared ~/.cloudflare-warp ~/cloudflare-warp /etc/cloudflared /usr/local/etc/cloudflared]"}
+{"level":"info","time":"2026-02-04T07:57:15Z","message":"Version 2026.1.2 (Checksum 7ca2e2496bd39d897fef3054a02156bd143f036f97ab5ed32ed1658893653dfe)"}
+{"level":"info","time":"2026-02-04T07:57:15Z","message":"GOOS: darwin, GOVersion: go1.25.6, GoArch: arm64"}
+{"level":"info","time":"2026-02-04T07:57:15Z","message":"Settings: map[ha-connections:1 logfile:./cloudflared.log loglevel:info protocol:quic url:http://localhost:4200]"}
+{"level":"info","time":"2026-02-04T07:57:15Z","message":"cloudflared will not automatically update if installed by a package manager."}
+{"level":"info","time":"2026-02-04T07:57:15Z","message":"Generated Connector ID: 7dd746c7-cc8b-46bc-a913-50db2d6a40fe"}
+{"level":"info","time":"2026-02-04T07:57:15Z","message":"Initial protocol quic"}
+{"level":"info","time":"2026-02-04T07:57:15Z","message":"ICMP proxy will use 172.16.10.17 as source for IPv4"}
+{"level":"info","time":"2026-02-04T07:57:15Z","message":"ICMP proxy will use fe80::c76:231b:45e8:7b07 in zone en0 as source for IPv6"}
+{"level":"info","time":"2026-02-04T07:57:15Z","message":"Created ICMP proxy listening on 172.16.10.17:0"}
+{"level":"info","time":"2026-02-04T07:57:15Z","message":"ICMP proxy will use 172.16.10.17 as source for IPv4"}
+{"level":"info","time":"2026-02-04T07:57:15Z","message":"ICMP proxy will use fe80::c76:231b:45e8:7b07 in zone en0 as source for IPv6"}
+{"level":"info","time":"2026-02-04T07:57:15Z","message":"Starting metrics server on 127.0.0.1:20242/metrics"}
+{"level":"info","event":0,"ip":"198.41.192.167","connIndex":0,"time":"2026-02-04T07:57:15Z","message":"Tunnel connection curve preferences: [X25519MLKEM768 CurveP256]"}
+{"level":"info","event":0,"connection":"8c331bb2-19d7-4b47-bc48-5330d5a76678","connIndex":0,"location":"icn06","ip":"198.41.192.167","protocol":"quic","time":"2026-02-04T07:57:15Z","message":"Registered tunnel connection"}
+{"level":"error","event":0,"ip":"198.41.192.167","connIndex":0,"error":"failed to accept QUIC stream: timeout: no recent network activity","time":"2026-02-04T08:43:31Z","message":"failed to accept incoming stream requests"}
+{"level":"error","event":0,"ip":"198.41.192.167","connIndex":0,"error":"timeout: no recent network activity","time":"2026-02-04T08:43:31Z","message":"failed to run the datagram handler"}
+{"level":"error","event":0,"ip":"198.41.192.167","connIndex":0,"error":"accept stream listener encountered a failure while serving","time":"2026-02-04T08:43:31Z","message":"failed to serve tunnel connection"}
+{"level":"error","event":0,"ip":"198.41.192.167","connIndex":0,"error":"accept stream listener encountered a failure while serving","time":"2026-02-04T08:43:31Z","message":"Serve tunnel error"}
+{"level":"info","event":0,"ip":"198.41.192.167","connIndex":0,"time":"2026-02-04T08:43:31Z","message":"Retrying connection in up to 1s"}
+{"level":"info","event":0,"ip":"198.41.192.167","connIndex":0,"time":"2026-02-04T08:43:32Z","message":"Tunnel connection curve preferences: [X25519MLKEM768 CurveP256]"}
+{"level":"info","event":0,"connection":"47392afd-729c-4d7c-a8a7-f958a0600df1","connIndex":0,"location":"icn06","ip":"198.41.192.167","protocol":"quic","time":"2026-02-04T08:43:36Z","message":"Registered tunnel connection"}
