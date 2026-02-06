@@ -1,0 +1,3 @@
+postiz.jupocket.com {
+    reverse_proxy postiz:5000
+}

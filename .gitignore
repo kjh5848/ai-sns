@@ -10,3 +10,5 @@ postiz-selfhosted/redis_data/
 
 # Sensitive environment files if any exist separately
 .env
+*.csv
+*.pem
